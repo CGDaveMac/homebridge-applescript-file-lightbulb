@@ -1,12 +1,12 @@
-# homebridge-applescript-file-lightbulb
+# homebridge-applescript-file-speaker
 
-A homebridge lightbulb accessory that can trigger specific AppleScript files
+A homebridge speaker accessory that can trigger specific AppleScript files
 
 
 ## Installation
 
 1. Install homebridge using: `npm install -g homebridge`
-2. Install this plugin using: `npm install -g homebridge-applescript-file-lightbulb`
+2. Install this plugin using: `npm install -g homebridge-applescript-file-speaker`
 3. Update your configuration file. See `sample-config.json` in this repository for a sample.
 
 ## Configuration
@@ -16,17 +16,17 @@ Configuration sample:
 ```
 "accessories": [
     {
-        "accessory": "ApplescriptFileLightbulb",
-        "name": "iTunes Volume",
+        "accessory": "ApplescriptFileSpeaker",
+        "name": "iTunes Speaker",
         "on": "",
         "off": "",
-        "brightness": "/Users/bendodson/Documents/Scripts/musicVolume.applescript"
+        "volume": "/Users/bendodson/Documents/Scripts/musicVolume.applescript"
     }
 ]
 ```
 Note that you must use absolute paths for your AppleScript file.
 
-In this example I'm just using the "brightness" attribute in order to change the volume of iTunes although you can specify on / off states should you want to do something like pause or resume iTunes with the same accessory. An example of a volume control AppleScript is listed below:
+In this example the "volume" attribute is used to change the volume of iTunes although you can specify on / off states should you want to do something like pause or resume iTunes with the same accessory. An example of a volume control AppleScript is listed below:
 
 ```
 on run argv
