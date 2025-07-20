@@ -78,4 +78,3 @@ ApplescriptSpeakerAccessory.prototype.getServices = function() {
             .getCharacteristic(Characteristic.Volume)
             .on('set', this.setVolume.bind(this));
         return [speakerService];
-}
