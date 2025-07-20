@@ -4,25 +4,25 @@ var Characteristic;
 var applescript = require('applescript');
 
 module.exports = function(homebridge) {
-	Service = homebridge.hap.Service;
-	Characteristic = homebridge.hap.Characteristic;
-	homebridge.registerAccessory('homebridge-applescript-file-lightbulb', 'ApplescriptFileLightbulb', ApplescriptAccessory);
+        Service = homebridge.hap.Service;
+        Characteristic = homebridge.hap.Characteristic;
+        homebridge.registerAccessory('homebridge-applescript-file-speaker', 'ApplescriptFileSpeaker', ApplescriptSpeakerAccessory);
 }
 
-function ApplescriptAccessory(log, config) {
-	this.log = log;
-	this.service = 'Switch';
-	this.name = config['name'];
-	this.onCommand = config['on'];
-	this.offCommand = config['off'];
-	this.brightnessCommand = config['brightness'];
+function ApplescriptSpeakerAccessory(log, config) {
+        this.log = log;
+        this.service = 'SmartSpeaker';
+        this.name = config['name'];
+        this.onCommand = config['on'];
+        this.offCommand = config['off'];
+        this.volumeCommand = config['volume'];
 }
 
-ApplescriptAccessory.prototype.setState = function(powerOn, callback) {
-	var accessory = this;
-	var state = powerOn ? 'on' : 'off';
-	var prop = state + 'Command';
-	var command = accessory[prop];
+ApplescriptSpeakerAccessory.prototype.setState = function(targetState, callback) {
+        var accessory = this;
+        var state = targetState === Characteristic.TargetMediaState.PLAY ? 'on' : 'off';
+        var prop = state + 'Command';
+        var command = accessory[prop];
 
 	if (command.length == 0) {
 		callback(null);
@@ -42,9 +42,9 @@ ApplescriptAccessory.prototype.setState = function(powerOn, callback) {
 	}
 }
 
-ApplescriptAccessory.prototype.setBrightness = function(level, callback) {
-	var accessory = this;
-	var command = accessory['brightnessCommand'];
+ApplescriptSpeakerAccessory.prototype.setVolume = function(level, callback) {
+        var accessory = this;
+        var command = accessory['volumeCommand'];
 	if (command.length == 0) {
 		callback(null);
 		return;
@@ -63,22 +63,20 @@ ApplescriptAccessory.prototype.setBrightness = function(level, callback) {
 	}
 }
 
-ApplescriptAccessory.prototype.getServices = function() {
-	var informationService = new Service.AccessoryInformation();
-	var lightbulbService = new Service.Lightbulb(this.name);
+ApplescriptSpeakerAccessory.prototype.getServices = function() {
+        var informationService = new Service.AccessoryInformation();
+        var speakerService = new Service.SmartSpeaker(this.name);
 
 	informationService
 		.setCharacteristic(Characteristic.Manufacturer, 'Applescript Manufacturer')
 		.setCharacteristic(Characteristic.Model, 'Applescript Model')
 		.setCharacteristic(Characteristic.SerialNumber, 'Applescript Serial Number');
 
-	lightbulbService
-		.getCharacteristic(Characteristic.On)
-		.on('set', this.setState.bind(this));
+        speakerService
+                .getCharacteristic(Characteristic.TargetMediaState)
+                .on('set', this.setState.bind(this));
 
-	lightbulbService
-            .addCharacteristic(Characteristic.Brightness)
-            .on('set', this.setBrightness.bind(this));
-
-	return [lightbulbService];
-}
+        speakerService
+            .getCharacteristic(Characteristic.Volume)
+            .on('set', this.setVolume.bind(this));
+        return [speakerService];

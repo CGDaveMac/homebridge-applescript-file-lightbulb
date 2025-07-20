@@ -1,7 +1,8 @@
 {
-	"name": "homebridge-applescript-file-lightbulb",
-	"version": "0.0.5",
-	"description": "Applescript plugin for homebridge: https://github.com/nfarina/homebridge",
+        "name": "homebridge-applescript-file-speaker",
+	"version": "0.0.4",
+    "description": "AppleScript speaker plugin for homebridge: https://github.com/nfarina/homebridge",
+
 	"license": "ISC",
 	"keywords": [
 		"homebridge-plugin"
@@ -13,11 +14,11 @@
 	"author": {
 		"name": "Ben Dodson & Dan Budiac"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/bendodson/homebridge-applescript-file-lightbulb.git"
-	},
-	"dependencies": {
-		"applescript": "0.2.1"
-	}
+        "repository": {
+                "type": "git",
+                "url": "git://github.com/bendodson/homebridge-applescript-file-speaker.git"
+        },
+        "dependencies": {
+                "applescript": "0.2.1"
+        }
 }
