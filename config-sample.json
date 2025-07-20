@@ -6,15 +6,15 @@
 		"pin": "031-45-154"
 	},
 
-	"description": "This is an example configuration for the Applescript File Lightbulb homebridge plugin",
+        "description": "This is an example configuration for the Applescript File Speaker homebridge plugin",
 
 	"accessories": [
-		{
-			"accessory": "ApplescriptFileLightbulb",
-			"name": "iTunes Volume",
-			"on": "",
-			"off": "",
-			"brightness": "/Users/bendodson/Documents/Scripts/musicVolume.applescript"
-		}
+                {
+                        "accessory": "ApplescriptFileSpeaker",
+                        "name": "iTunes Speaker",
+                        "on": "",
+                        "off": "",
+                        "volume": "/Users/bendodson/Documents/Scripts/musicVolume.applescript"
+                }
 	]
 }
