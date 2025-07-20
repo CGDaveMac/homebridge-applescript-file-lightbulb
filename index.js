@@ -25,6 +25,7 @@ ApplescriptSpeakerAccessory.prototype.setState = function(targetState, callback)
         var command = accessory[prop];
 
 	if (command.length == 0) {
+		callback(null);
 		return;
 	}
 
@@ -45,6 +46,7 @@ ApplescriptSpeakerAccessory.prototype.setVolume = function(level, callback) {
         var accessory = this;
         var command = accessory['volumeCommand'];
 	if (command.length == 0) {
+		callback(null);
 		return;
 	}
 

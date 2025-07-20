@@ -2,6 +2,7 @@
         "name": "homebridge-applescript-file-speaker",
 	"version": "0.0.4",
     "description": "AppleScript speaker plugin for homebridge: https://github.com/nfarina/homebridge",
+
 	"license": "ISC",
 	"keywords": [
 		"homebridge-plugin"
